@@ -9,7 +9,7 @@ through the SPI and I2C protocols.
 from machine import Pin, SPI
 from utime import sleep
 
-from bmp280 import BMP280SPI, BMP280Configuration
+from bmp280 import BMP280SPI
 
 spi1_sck = Pin(10)
 spi1_tx = Pin(11)
@@ -33,7 +33,7 @@ breakout board.
 from machine import Pin, I2C
 from utime import sleep
 
-from bmp280 import BMP280I2C, BMP280Configuration
+from bmp280 import BMP280I2C
 
 i2c0_sda = Pin(8)
 i2c0_scl = Pin(9)
