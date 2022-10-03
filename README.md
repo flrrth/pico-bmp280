@@ -64,5 +64,5 @@ config.temperature_oversampling = BMP280Configuration.TEMPERATURE_OVERSAMPLING_2
 config.filter_coefficient = BMP280Configuration.FILTER_COEFFICIENT_16
 config.standby_time = BMP280Configuration.STANDBY_TIME__5_MS
 
-bmp280_i2c = BMP280I2C(0x76, i2c0, config)
+bmp280_i2c = BMP280I2C(0x77, i2c0, config)
 ```
