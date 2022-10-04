@@ -1,45 +1,47 @@
 # The datasheet can be found at
 # https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/#documents
+from micropython import const
+
 
 class BMP280Configuration:
 
     # See datasheet paragraph 3.3.1 Pressure measurement (page 12)
-    PRESSURE_OVERSAMPLING_SKIPPED = 0
-    PRESSURE_OVERSAMPLING_1X = 1
-    PRESSURE_OVERSAMPLING_2X = 2
-    PRESSURE_OVERSAMPLING_4X = 3
-    PRESSURE_OVERSAMPLING_8X = 4
-    PRESSURE_OVERSAMPLING_16X = 5
+    PRESSURE_OVERSAMPLING_SKIPPED = const(0)
+    PRESSURE_OVERSAMPLING_1X = const(1)
+    PRESSURE_OVERSAMPLING_2X = const(2)
+    PRESSURE_OVERSAMPLING_4X = const(3)
+    PRESSURE_OVERSAMPLING_8X = const(4)
+    PRESSURE_OVERSAMPLING_16X = const(5)
 
     # See datasheet paragraph 3.3.2 Temperature measurement (page 13)
-    TEMPERATURE_OVERSAMPLING_SKIPPED = 0
-    TEMPERATURE_OVERSAMPLING_1X = 1
-    TEMPERATURE_OVERSAMPLING_2X = 2
-    TEMPERATURE_OVERSAMPLING_4X = 3
-    TEMPERATURE_OVERSAMPLING_8X = 4
-    TEMPERATURE_OVERSAMPLING_16X = 5
+    TEMPERATURE_OVERSAMPLING_SKIPPED = const(0)
+    TEMPERATURE_OVERSAMPLING_1X = const(1)
+    TEMPERATURE_OVERSAMPLING_2X = const(2)
+    TEMPERATURE_OVERSAMPLING_4X = const(3)
+    TEMPERATURE_OVERSAMPLING_8X = const(4)
+    TEMPERATURE_OVERSAMPLING_16X = const(5)
 
     # See datasheet paragraph 3.3.3 IIR filter (page 13)
-    FILTER_COEFFICIENT_OFF = 0
-    FILTER_COEFFICIENT_2 = 1
-    FILTER_COEFFICIENT_4 = 2
-    FILTER_COEFFICIENT_8 = 3
-    FILTER_COEFFICIENT_16 = 4
+    FILTER_COEFFICIENT_OFF = const(0)
+    FILTER_COEFFICIENT_2 = const(1)
+    FILTER_COEFFICIENT_4 = const(2)
+    FILTER_COEFFICIENT_8 = const(3)
+    FILTER_COEFFICIENT_16 = const(4)
 
     # See datasheet paragraph 3.6 Power modes (page 15)
-    POWER_MODE_SLEEP = 0
-    POWER_MODE_FORCED = 1
-    POWER_MODE_NORMAL = 3
+    POWER_MODE_SLEEP = const(0)
+    POWER_MODE_FORCED = const(1)
+    POWER_MODE_NORMAL = const(3)
 
     # See datasheet paragraph 3.6.3 Normal mode (page 16)
-    STANDBY_TIME__5_MS = 0
-    STANDBY_TIME_62_5_MS = 1
-    STANDBY_TIME_125_MS = 2
-    STANDBY_TIME_250_MS = 3
-    STANDBY_TIME_500_MS = 4
-    STANDBY_TIME_1000_MS = 5
-    STANDBY_TIME_2000_MS = 6
-    STANDBY_TIME_4000_MS = 7
+    STANDBY_TIME__5_MS = const(0)
+    STANDBY_TIME_62_5_MS = const(1)
+    STANDBY_TIME_125_MS = const(2)
+    STANDBY_TIME_250_MS = const(3)
+    STANDBY_TIME_500_MS = const(4)
+    STANDBY_TIME_1000_MS = const(5)
+    STANDBY_TIME_2000_MS = const(6)
+    STANDBY_TIME_4000_MS = const(7)
 
     def __init__(self):
         # Configure the 'weather monitoring' use case (page 14, table 7) as default:
