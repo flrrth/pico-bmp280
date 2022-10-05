@@ -76,9 +76,7 @@ class BMP280:
         self._write_config()
         
     def reset(self):
-        txdata = bytearray(1)
-        txdata[0] = 0xb6
-        self._write(0xe0, txdata)
+        self._write(0xe0, bytearray(b'\xb6'))
 
     @property
     def chip_id(self):        
