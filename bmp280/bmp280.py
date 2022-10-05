@@ -1,3 +1,5 @@
+# https://github.com/flrrth/pico-bmp280
+
 from ustruct import unpack
 from utime import sleep_ms
 
@@ -5,6 +7,7 @@ from .bmp280_configuration import BMP280Configuration
 
 
 class BMP280:
+    """The 'base class' for the BMP280I2C and BMP280SPI classes."""
     
     def __init__(self, configuration):
         self.configuration = configuration
@@ -65,33 +68,49 @@ class BMP280:
         return t, t_fine
 
     @property
-    def configuration(self):
+    def configuration(self) -> BMP280Configuration:
+        """Get configuration"""
         return self._configuration
     
     @configuration.setter
-    def configuration(self, configuration):
+    def configuration(self, configuration: BMP280Configuration):
+        """Set configuration
+
+        Whenever the configuration is changed, use this property to update it. The chip will be reset and the
+        configuration is written to the chip registers.
+        """
         self._configuration = configuration
         self.reset()
         self._write_ctrl_meas()
         self._write_config()
         
     def reset(self):
-        txdata = bytearray(1)
-        txdata[0] = 0xb6
-        self._write(0xe0, txdata)
+        self._write(0xe0, bytearray(b'\xb6'))
 
     @property
-    def chip_id(self):        
+    def chip_id(self) -> str:
+        """Get chip_ip
+
+        Returns the chip ID, which is always 0x58.
+        """
         rxdata = self._read(0xd0, 1)
         return hex(rxdata[0])
     
     @property
     def status(self):
+        """Get status
+
+        Returns the chip status. See datasheet paragraph 4.3.3 Register 0xF3 "status" (page 25).
+        """
         rxdata = self._read(0xf3, 1)
         return hex(rxdata[0])
     
     @property
     def config(self):
+        """Get config
+
+        Returns the standby time and filter coefficient ('config') currently configured on the chip.
+        """
         rxdata = self._read(0xf5, 1)
         return hex(rxdata[0])
     
@@ -101,6 +120,11 @@ class BMP280:
     
     @property
     def ctrl_meas(self):
+        """Get ctrl_meas
+
+        Returns the temperature and pressure oversampling configuration and selected power mode currently configured on
+        the chip.
+        """
         rxdata = self._read(0xf4, 1)
         return hex(rxdata[0])
     
@@ -109,7 +133,16 @@ class BMP280:
         sleep_ms(5)  # Wait briefly so the changes can be applied
     
     @property
-    def measurements(self):
+    def measurements(self) -> dict:
+        """Get measurements
+
+        Returns a dictionary with the most recent measurements.
+
+        't': temperature,
+        't_adc': the 'raw' temperature as produced by the ADC,
+        'p': pressure,
+        'p_adc': the 'raw' pressure as produced by the ADC
+        """
         if self._configuration.power_mode == BMP280Configuration.POWER_MODE_FORCED:
             self._write_ctrl_meas()
 

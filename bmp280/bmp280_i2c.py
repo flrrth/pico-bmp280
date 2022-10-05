@@ -1,7 +1,10 @@
+# https://github.com/flrrth/pico-bmp280
+
 from .bmp280 import BMP280, BMP280Configuration
 
 
 class BMP280I2C(BMP280):
+    """The I2C implementation for the BMP280."""
 
     def __init__(self, address, i2c, configuration=BMP280Configuration()):
         self._address = address
