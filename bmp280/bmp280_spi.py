@@ -1,7 +1,10 @@
+# https://github.com/flrrth/pico-bmp280
+
 from .bmp280 import BMP280, BMP280Configuration
 
 
 class BMP280SPI(BMP280):
+    """The SPI implementation for the BMP280."""
 
     def __init__(self, spi, cs, configuration=BMP280Configuration()):        
         self._cs = cs
