@@ -86,7 +86,7 @@ class BMP280Configuration:
 
     @pressure_oversampling.setter
     def pressure_oversampling(self, pressure_oversampling: int):
-        """Get pressure_oversampling"""
+        """Set pressure_oversampling"""
         self._pressure_oversampling = pressure_oversampling
 
     @property
